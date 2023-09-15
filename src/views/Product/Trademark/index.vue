@@ -1,6 +1,9 @@
 <template>
-  <router-view></router-view>
+    <div>
+        Trademark
+    </div>
 </template>
+
 
 <script setup lang="ts">
 

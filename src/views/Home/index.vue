@@ -1,10 +1,11 @@
 <template>
-  <router-view></router-view>
+    <h1>Home </h1>
 </template>
 
 <script setup lang="ts">
 
 </script>
+
 
 <style scoped lang="scss">
 

@@ -1,6 +1,9 @@
 <template>
-  <router-view></router-view>
+    <div>
+        Attr
+    </div>
 </template>
+
 
 <script setup lang="ts">
 

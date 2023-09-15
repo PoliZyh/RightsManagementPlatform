@@ -1,6 +1,9 @@
 <template>
-  <router-view></router-view>
+    <div>
+        Sku
+    </div>
 </template>
+
 
 <script setup lang="ts">
 
