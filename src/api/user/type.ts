@@ -1,35 +1,31 @@
-// 登录接口需要携带参数ts类型
-export interface I_LOGIN_FORM {
-  username: string;
-  password: string;
-}
-interface I_LOGIN_DATA_TYPE {
-  token?: string;
-  message?: string;
+
+
+
+// 定义全部接口返回数据都拥有的ts类型
+export interface I_RESPONSE_DATA {
+    code: number;
+    message: string;
+    ok: boolean;
 }
 
-// 登录接口返回数据类型
-export interface I_LOGIN_RESPONSE_DATA {
-  code: number;
-  data: I_LOGIN_DATA_TYPE;
+
+// 登录接口携带参数
+export interface I_LOGIN_FORM_DATA {
+    username: string;
+    password: string;
+}
+// 登录接口返回数据接口
+export interface I_LOGIN_RESPONSE_DATA extends I_RESPONSE_DATA {
+    data: string;
 }
 
-// 用户信息接口部分
-interface I_USER_INFO {
-  userId: number;
-  avatar: string;
-  username: string;
-  password: string;
-  desc: string;
-  roles: string[];
-  buttons: string[];
-  routes: string[];
-  token: string;
-}
-interface I_USER_DATA_TYPE {
-  checkUser: I_USER_INFO;
-}
-export interface I_USE_RESPONSE_DATA {
-  code: number;
-  data: I_USER_DATA_TYPE;
+// 定义获取用户信息接口
+export interface I_USERINFO_RESPONSE_DATA extends I_RESPONSE_DATA {
+    data: {
+        routes: string[];
+        buttons: string[];
+        roles: string[];
+        name: string;
+        avatar: string;
+    }
 }

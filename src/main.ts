@@ -25,4 +25,7 @@ app.use(globalComponents)
 app.use(router)
 app.use(pinia)
 
+// 引入路由鉴权
+import './permission'
+
 app.mount('#app')
