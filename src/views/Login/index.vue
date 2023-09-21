@@ -90,7 +90,7 @@ const handleLogin = async () => {
     // 登录成功
     await userStore.userLogin(loginForm)
     router.push({
-      path: route.query.redirect ? route.query.redirect as string : '/login', // 跳转
+      path: route.query.redirect ? (route.query.redirect as string) : '/login', // 跳转
     })
     ElNotification({
       type: 'success',

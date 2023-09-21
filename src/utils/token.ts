@@ -1,16 +1,15 @@
-
 enum SETTING {
-    TOKEN = 'token'
+  TOKEN = 'token',
 }
 
 export const SET_TOKEN = (token: string) => {
-    localStorage.setItem(SETTING.TOKEN, token)
+  localStorage.setItem(SETTING.TOKEN, token)
 }
 
 export const GET_TOKEN = (): string => {
-    return localStorage.getItem(SETTING.TOKEN) || ''
+  return localStorage.getItem(SETTING.TOKEN) || ''
 }
 
 export const CLEAR_TOKEN = () => {
-    localStorage.removeItem(SETTING.TOKEN)
+  localStorage.removeItem(SETTING.TOKEN)
 }

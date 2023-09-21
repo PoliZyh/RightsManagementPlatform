@@ -4,8 +4,15 @@
     <div class="layout-slider" :class="{ fold: settingStore.fold }">
       <Logo></Logo>
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="$base-menu-background" text-color="white" :default-active="route.path"
-          :collapse="settingStore.fold" class="menu" :style="{ 'bg-color': 'red' }" popper-effect="dark">
+        <el-menu
+          background-color="$base-menu-background"
+          text-color="white"
+          :default-active="route.path"
+          :collapse="settingStore.fold"
+          class="menu"
+          :style="{ 'bg-color': 'red' }"
+          popper-effect="dark"
+        >
           <!-- 动态生成菜单 -->
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
@@ -56,7 +63,6 @@ const route = useRoute()
         --el-menu-bg-color: $base-menu-background;
         border-right: none;
       }
-
     }
 
     // 相当于.layout-slider.fold同时具备这两个类名
@@ -71,7 +77,7 @@ const route = useRoute()
     height: $base-tabbar-height;
     top: 0;
     left: $base-menu-width;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &.fold {
       width: calc(100% - $base-menu-min-width);
@@ -87,7 +93,7 @@ const route = useRoute()
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &.fold {
       width: calc(100% - $base-menu-min-width);
@@ -98,7 +104,9 @@ const route = useRoute()
 </style>
 
 <style lang="scss">
-.el-popper.is-light {
-  background-color: $base-menu-background;
-}
+  .el-popper.is-light {
+    .el-menu--vertical.el-menu--popup-container {
+      background-color: $base-menu-background;
+    }
+  }
 </style>

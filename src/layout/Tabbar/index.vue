@@ -20,7 +20,12 @@ import Setting from './Setting/index.vue'
   height: 100%;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(to right, rgb(244, 236, 236), rgb(182, 182, 182), rgb(225, 222, 222));
+  background-image: linear-gradient(
+    to right,
+    rgb(244, 236, 236),
+    rgb(182, 182, 182),
+    rgb(225, 222, 222)
+  );
   .tabbar-left {
     display: flex;
     align-items: center;
@@ -32,7 +37,6 @@ import Setting from './Setting/index.vue'
     display: flex;
     align-items: center;
     margin-right: 20px;
-    
   }
 }
 </style>

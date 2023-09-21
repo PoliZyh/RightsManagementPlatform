@@ -1,9 +1,10 @@
 import SvgIcon from './SvgIcon/index.vue'
+import Category from './Category/index.vue'
 import { App } from 'vue'
 // element-plus-icons
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-const allGlobalComponents = { SvgIcon, ...ElementPlusIconsVue }
+const allGlobalComponents = { SvgIcon, ...ElementPlusIconsVue, Category }
 
 // 对外暴漏一个插件对象
 export default {

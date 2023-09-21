@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import useSettingStore from '@/store/modules/useSettingStore';
-import { watch, ref, nextTick } from 'vue';
+import useSettingStore from '@/store/modules/useSettingStore'
+import { watch, ref, nextTick } from 'vue'
 
 const settingStore = useSettingStore()
 let refreshFlag = ref(true)
@@ -22,7 +22,7 @@ watch(
     refreshFlag.value = false
     await nextTick()
     refreshFlag.value = true
-  }
+  },
 )
 </script>
 

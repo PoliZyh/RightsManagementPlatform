@@ -10,7 +10,7 @@ const useUserStore = defineStore('user', {
     token: GET_TOKEN() || '', //用户唯一标识
     menuRoutes: constantRoutes, // 仓库存储生成菜单需要的数组（路由）
     username: '',
-    avatar: ''
+    avatar: '',
   }),
 
   actions: {
@@ -56,9 +56,7 @@ const useUserStore = defineStore('user', {
       } else {
         return Promise.reject(new Error(res.message))
       }
-      
-    }
-
+    },
   },
 
   getters: {},
@@ -70,8 +68,8 @@ const useUserStore = defineStore('user', {
     },
     {
       paths: [],
-      storage: sessionStorage
-    }
+      storage: sessionStorage,
+    },
   ],
 })
 
