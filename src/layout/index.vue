@@ -104,9 +104,9 @@ const route = useRoute()
 </style>
 
 <style lang="scss">
-  .el-popper.is-light {
-    .el-menu--vertical.el-menu--popup-container {
-      background-color: $base-menu-background;
-    }
+.el-popper.is-light {
+  .el-menu--vertical.el-menu--popup-container {
+    background-color: $base-menu-background;
   }
+}
 </style>

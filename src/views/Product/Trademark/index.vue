@@ -3,7 +3,9 @@
     <!-- card -->
     <el-card class="box-card">
       <!-- 卡片顶部添加品牌 -->
-      <el-button type="primary" icon="Plus" @click="handleAddTrademark">添加品牌</el-button>
+      <el-button type="primary" icon="Plus" @click="handleAddTrademark">
+        添加品牌
+      </el-button>
       <!-- 表格组件 -->
       <el-table class="table" border :data="trademarkArr">
         <el-table-column
@@ -19,18 +21,29 @@
         </el-table-column>
         <el-table-column label="品牌LOGO">
           <template #="{ row }">
-            <img
-              :src="row.logoUrl"
-              style="width: 100px; height: 100px"
-            />
+            <img :src="row.logoUrl" style="width: 100px; height: 100px" />
           </template>
         </el-table-column>
         <el-table-column label="品牌操作">
           <template v-slot="{ row }">
-            <el-button type="primary" size="small" icon="Edit" @click="handleUpdateTrademark(row)"></el-button>
-            <el-popconfirm :title="`您确定删除${row.tmName}嘛`" width="250px" icon="Delete" @confirm="handleDeleteTrademark(row.id)">
+            <el-button
+              type="primary"
+              size="small"
+              icon="Edit"
+              @click="handleUpdateTrademark(row)"
+            ></el-button>
+            <el-popconfirm
+              :title="`您确定删除${row.tmName}嘛`"
+              width="250px"
+              icon="Delete"
+              @confirm="handleDeleteTrademark(row.id)"
+            >
               <template #reference>
-                <el-button type="primary" size="small" icon="Delete"></el-button>
+                <el-button
+                  type="primary"
+                  size="small"
+                  icon="Delete"
+                ></el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -49,13 +62,21 @@
       />
     </el-card>
     <!-- 对话框组件 -->
-    <el-dialog 
-    v-model="dialogFormVisible" 
-    :title="trademarkParams.id ? '修改品牌' : '添加品牌'"
+    <el-dialog
+      v-model="dialogFormVisible"
+      :title="trademarkParams.id ? '修改品牌' : '添加品牌'"
     >
-      <el-form style="width: 80%;" :model="trademarkParams" :rules="rules" ref="formRef">
+      <el-form
+        style="width: 80%"
+        :model="trademarkParams"
+        :rules="rules"
+        ref="formRef"
+      >
         <el-form-item label="品牌名称" label-width="90px" prop="tmName">
-          <el-input placeholder="请您输入品牌名称" v-model="trademarkParams.tmName"></el-input>
+          <el-input
+            placeholder="请您输入品牌名称"
+            v-model="trademarkParams.tmName"
+          ></el-input>
         </el-form-item>
         <el-form-item label="品牌LOGO" label-wdith="90px" prop="logoUrl">
           <el-upload
@@ -65,7 +86,11 @@
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
           >
-            <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
+            <img
+              v-if="trademarkParams.logoUrl"
+              :src="trademarkParams.logoUrl"
+              class="avatar"
+            />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
@@ -80,9 +105,22 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive, nextTick } from 'vue'
-import { reqHasTrademark, reqAddOrUpdateTrademark, reqDeleteTrademark } from '@/api/product/trademark'
-import type { I_TRADEMARK_RECORDS, I_TRADEMARK, I_UPLOAD_LOGO_RESPONSE_DATA } from '@/api/product/trademark/type';
-import { ElMessage, type UploadProps, type FormRules, type FormInstance } from 'element-plus'
+import {
+  reqHasTrademark,
+  reqAddOrUpdateTrademark,
+  reqDeleteTrademark,
+} from '@/api/product/trademark'
+import type {
+  I_TRADEMARK_RECORDS,
+  I_TRADEMARK,
+  I_UPLOAD_LOGO_RESPONSE_DATA,
+} from '@/api/product/trademark/type'
+import {
+  ElMessage,
+  type UploadProps,
+  type FormRules,
+  type FormInstance,
+} from 'element-plus'
 
 let pageNo = ref<number>(1) // 当前页号
 let pageSize = ref<number>(3) // 一页展示的数据
@@ -91,7 +129,7 @@ let trademarkArr = ref<I_TRADEMARK_RECORDS>([]) // 已有品牌数据
 let dialogFormVisible = ref<boolean>(false) // dialog的现实与隐藏
 let trademarkParams = reactive<I_TRADEMARK>({
   tmName: '',
-  logoUrl: ''
+  logoUrl: '',
 })
 const formRef = ref<FormInstance>()
 
@@ -108,15 +146,9 @@ const validatorLogoUrl = (_: any, value: any, cb: any) => {
   else cb(new Error('请上传Logo图片'))
 }
 const rules: FormRules = {
-  tmName: [
-    { required: true, trigger: 'blur', validator: validatorTmName }
-  ],
-  logoUrl: [
-    { required: true, trigger: 'change', validator: validatorLogoUrl }
-  ]
+  tmName: [{ required: true, trigger: 'blur', validator: validatorTmName }],
+  logoUrl: [{ required: true, trigger: 'change', validator: validatorLogoUrl }],
 }
-
-
 
 onMounted(async () => {
   await getHasTrademark()
@@ -158,7 +190,6 @@ const handleUpdateTrademark = async (row: I_TRADEMARK) => {
   formRef.value?.clearValidate()
 }
 
-
 // dialog取消事件
 const handleCancelDialog = () => {
   dialogFormVisible.value = false
@@ -193,10 +224,10 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     return false
   }
   // 大小约束
-  if (rawFile.size/1024/1024 >= 4) {
+  if (rawFile.size / 1024 / 1024 >= 4) {
     ElMessage.error('上传类型大小需小于4M')
     return false
-  } 
+  }
 }
 
 /**
@@ -204,7 +235,9 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
  * @param response 服务器响应的数据
  * @param uploadFile 图片对象
  */
-const handleAvatarSuccess: UploadProps['onSuccess'] = (response: I_UPLOAD_LOGO_RESPONSE_DATA) => {
+const handleAvatarSuccess: UploadProps['onSuccess'] = (
+  response: I_UPLOAD_LOGO_RESPONSE_DATA,
+) => {
   // 图片上传成功应该清空logo的校验规则
   formRef.value?.clearValidate('logoUrl')
   // 收集上传的地址，添加品牌时上传给服务器
@@ -216,12 +249,13 @@ const handleDeleteTrademark = async (id: number) => {
   const res = await reqDeleteTrademark(id)
   if (res.code === 200) {
     ElMessage.success('删除品牌成功')
-    getHasTrademark(trademarkArr.value.length > 1 ? pageNo.value : pageNo.value - 1)
+    getHasTrademark(
+      trademarkArr.value.length > 1 ? pageNo.value : pageNo.value - 1,
+    )
   } else {
     ElMessage.error('删除品牌失败')
   }
 }
-
 </script>
 
 <style scoped lang="scss">
