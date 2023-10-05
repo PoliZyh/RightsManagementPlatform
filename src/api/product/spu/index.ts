@@ -7,7 +7,7 @@ import type {
   I_ALL_SALE_ATTR_RESPONSE_DATA,
   I_SPU_OBJ,
   I_SKU_DATA,
-  I_SKU_INFO_RESPONSE_DATA
+  I_SKU_INFO_RESPONSE_DATA,
 } from './type'
 
 enum API {
@@ -30,7 +30,7 @@ enum API {
   // 查看某一个已有的SPU下全部售卖的商品
   GET_INFO_URL = '/admin/product/findBySpuId',
   // 删除已有的SPU
-  DELETE_SPU_URL = '/admin/product/deleteSpu'
+  DELETE_SPU_URL = '/admin/product/deleteSpu',
 }
 
 // 获取spu列表接口方法
@@ -102,7 +102,7 @@ export const reqAddSku = (data: I_SKU_DATA) => {
   return request<any, any>({
     url: API.ADD_SKU_URL,
     method: 'post',
-    data
+    data,
   })
 }
 
@@ -110,7 +110,7 @@ export const reqAddSku = (data: I_SKU_DATA) => {
 export const reqGetSkuList = (spuId: number) => {
   return request<any, I_SKU_INFO_RESPONSE_DATA>({
     url: API.GET_INFO_URL + `/${spuId}`,
-    method: 'get'
+    method: 'get',
   })
 }
 
@@ -118,6 +118,6 @@ export const reqGetSkuList = (spuId: number) => {
 export const reqDeleteSpu = (spuId: number) => {
   return request<any, any>({
     url: API.DELETE_SPU_URL + `/${spuId}`,
-    method: 'delete'
+    method: 'delete',
   })
 }

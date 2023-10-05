@@ -66,8 +66,8 @@ export interface I_SALE_ATTR {
   saleAttrName: string
   spuSaleAttrValueList: I_SALE_ATTR_VALUE_LIST
   flag?: boolean
-  saleAttrValue?: string;
-  saleIdAndValueId?: string;
+  saleAttrValue?: string
+  saleIdAndValueId?: string
 }
 export type I_SALE_ATTR_LIST = I_SALE_ATTR[]
 export interface I_SALE_ATTR_RESPONSE_DATA extends I_RESPONSE_DATA {
@@ -84,30 +84,35 @@ export interface I_ALL_SALE_ATTR_RESPONSE_DATA {
   data: I_ALL_SALE_ATTR_LIST
 }
 
-
-
 export interface I_SKU_ATTR_VALUE_ITEM {
-  attrId: number | null;
-  valueId: number | null;
+  attrId: number | null
+  valueId: number | null
+  valueName?: string
 }
 export interface I_SKU_SALE_ATTR_VALUE_ITEM {
-  saleAttrId: number | null;
-  saleAttrValueId: number | null;
+  saleAttrId: number | null
+  saleAttrValueId: number | null
+  saleAttrValueName: string
 }
 export interface I_SKU_DATA {
-  category3Id: number | null;
-  spuId: number | null;
-  tmId: number | null;
-  skuName: string;
-  price: number | null;
-  weight: number | null;
-  skuDesc: string;
-  skuAttrValueList: Array<I_SKU_ATTR_VALUE_ITEM>;
-  skuSaleAttrValueList: Array<I_SKU_ATTR_VALUE_ITEM>;
-  skuDefaultImg: string;
+  category3Id: number | null
+  spuId: number | null
+  tmId: number | null
+  skuName: string
+  price: number | null
+  weight: number | null
+  skuDesc: string
+  skuAttrValueList: Array<I_SKU_ATTR_VALUE_ITEM>
+  skuSaleAttrValueList: Array<I_SKU_SALE_ATTR_VALUE_ITEM>
+  skuDefaultImg: string
+  isSale?: number
+  id?: number
+  skuImageList: Array<{
+    imgUrl: string
+    id: number
+  }>
 }
 
-
 export interface I_SKU_INFO_RESPONSE_DATA extends I_RESPONSE_DATA {
-  data: I_SKU_DATA[];
+  data: I_SKU_DATA[]
 }

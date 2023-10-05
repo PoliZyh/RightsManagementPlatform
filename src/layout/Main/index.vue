@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view v-slot="{ Component }">
+    <router-view #="{ Component }">
       <transition name="fade">
         <!-- 渲染layout一级路由的子路由 -->
         <component :is="Component" v-if="refreshFlag"></component>

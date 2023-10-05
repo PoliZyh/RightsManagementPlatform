@@ -28,7 +28,12 @@
           ></el-table-column>
           <el-table-column label="操作">
             <template #="{ row }">
-              <el-button size="small" icon="Plus" title="添加SKU" @click="handleAddSku(row)"></el-button>
+              <el-button
+                size="small"
+                icon="Plus"
+                title="添加SKU"
+                @click="handleAddSku(row)"
+              ></el-button>
               <el-button
                 size="small"
                 icon="Edit"
@@ -41,9 +46,16 @@
                 title="查看SKU列表"
                 @click="handleFindSku(row)"
               ></el-button>
-              <el-popconfirm title="你确定删除该SPU嘛?" @confirm="handleDeleteSpu(row)">
+              <el-popconfirm
+                title="你确定删除该SPU嘛?"
+                @confirm="handleDeleteSpu(row)"
+              >
                 <template #reference>
-                  <el-button size="small" icon="Delete" title="删除SPU"></el-button>
+                  <el-button
+                    size="small"
+                    icon="Delete"
+                    title="删除SPU"
+                  ></el-button>
                 </template>
               </el-popconfirm>
             </template>
@@ -68,7 +80,11 @@
         @change-scene="changeScene"
       ></SpuFrom>
       <!-- 场景--添加Sku -->
-      <SkuForm v-show="scene === 2" @change-scene="changeScene" ref="skuFormRef"></SkuForm>
+      <SkuForm
+        v-show="scene === 2"
+        @change-scene="changeScene"
+        ref="skuFormRef"
+      ></SkuForm>
     </el-card>
     <el-dialog title="SKU列表" v-model="isShowDialog">
       <el-table border :data="skuList">
@@ -77,7 +93,7 @@
         <el-table-column label="sku重量" prop="weight"></el-table-column>
         <el-table-column label="sku图片">
           <template #="{ row }">
-            <img :src="row.skuDefaultImg" style="width: 100px;height: 100px;">
+            <img :src="row.skuDefaultImg" style="width: 100px; height: 100px" />
           </template>
         </el-table-column>
       </el-table>
