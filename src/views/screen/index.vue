@@ -2,11 +2,15 @@
   <div class="container">
     <!-- 内容区 -->
     <div class="screen" ref="screenRef">
-     
+      <!-- 顶部 -->
       <Top></Top>
 
       <div class="bottom">
-        <div class="left"></div>
+        <div class="left">
+          <Tourist class="tourist"></Tourist>
+          <Sex class="sex"></Sex>
+          <Age class="age"></Age>
+        </div>
         <div class="center"></div>
         <div class="right"></div>
       </div>
@@ -17,11 +21,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import Top from './components/Top.vue'
+import Age from './components/Age.vue'
+import Tourist from './components/Tourist.vue';
+import Sex from './components/Sex.vue';
 
 const screenRef = ref<HTMLDivElement>()
 
 onMounted(() => {
-  screenRef.value?.style.setProperty('transform', `scale(${getScale()}) translate(-50%, -50%)`)
+  screenRef.value?.style.setProperty(
+    'transform',
+    `scale(${getScale()}) translate(-50%, -50%)`,
+  )
 })
 
 // 大屏锁放的比例
@@ -33,12 +43,12 @@ const getScale = (w: number = 1920, h: number = 1080) => {
 
 // 监听适口变化
 window.onreset = () => {
-  screenRef.value?.style.setProperty('transform', `scale(${getScale()}) translate(-50%, -50%)`)
+  screenRef.value?.style.setProperty(
+    'transform',
+    `scale(${getScale()}) translate(-50%, -50%)`,
+  )
 }
-
-
 </script>
-
 
 <style scoped lang="scss">
 .container {
@@ -54,7 +64,7 @@ window.onreset = () => {
     width: 1920px;
     height: 1080px;
     transform-origin: left top;
-    
+
     .bottom {
       display: flex;
       .right {
@@ -62,6 +72,18 @@ window.onreset = () => {
       }
       .left {
         flex: 1;
+        height: 1040px;
+        display: flex;
+        flex-direction: column;
+        .tourist {
+          flex: 1.2;
+        }
+        .sex {
+          flex: 1;
+        }
+        .age {
+          flex: 1;
+        }
       }
       .center {
         flex: 2;
