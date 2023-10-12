@@ -11,7 +11,10 @@
           <Sex class="sex"></Sex>
           <Age class="age"></Age>
         </div>
-        <div class="center"></div>
+        <div class="center">
+          <Map class="map"></Map>
+          <Line class="line"></Line>
+        </div>
         <div class="right"></div>
       </div>
     </div>
@@ -22,8 +25,11 @@
 import { ref, onMounted } from 'vue'
 import Top from './components/Top.vue'
 import Age from './components/Age.vue'
-import Tourist from './components/Tourist.vue';
-import Sex from './components/Sex.vue';
+import Tourist from './components/Tourist.vue'
+import Sex from './components/Sex.vue'
+import Map from './components/Map.vue'
+import Line from './components/Line.vue'
+
 
 const screenRef = ref<HTMLDivElement>()
 
@@ -32,6 +38,8 @@ onMounted(() => {
     'transform',
     `scale(${getScale()}) translate(-50%, -50%)`,
   )
+
+  
 })
 
 // 大屏锁放的比例
@@ -42,12 +50,12 @@ const getScale = (w: number = 1920, h: number = 1080) => {
 }
 
 // 监听适口变化
-window.onreset = () => {
-  screenRef.value?.style.setProperty(
-    'transform',
-    `scale(${getScale()}) translate(-50%, -50%)`,
-  )
-}
+window.onresize = () => {
+    screenRef.value?.style.setProperty(
+      'transform',
+      `scale(${getScale()}) translate(-50%, -50%)`,
+    )
+  }
 </script>
 
 <style scoped lang="scss">
@@ -87,6 +95,14 @@ window.onreset = () => {
       }
       .center {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+        .map {
+          flex: 4;
+        }
+        .line {
+          flex: 1;
+        }
       }
     }
   }
