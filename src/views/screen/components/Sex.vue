@@ -2,29 +2,27 @@
   <div class="sex-box">
     <div class="title">
       <p>男女比例</p>
-      <img src="../images/dataScreen-title.png" alt="">
+      <img src="../images/dataScreen-title.png" alt="" />
     </div>
     <div class="sex">
       <div class="man">
-        <img src="../images/man.png" alt="">
+        <img src="../images/man.png" alt="" />
       </div>
       <div class="woman">
-        <img src="../images/woman.png" alt="">
+        <img src="../images/woman.png" alt="" />
       </div>
     </div>
     <div class="rate">
       <p>男士58%</p>
       <p>女士42%</p>
     </div>
-    <div class="charts" ref="chartRef">
-
-    </div>
+    <div class="charts" ref="chartRef"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 
 const chartRef = ref<HTMLDivElement>()
 
@@ -41,11 +39,11 @@ onMounted(() => {
     xAxis: {
       show: false,
       min: 0,
-      max: 100
+      max: 100,
     },
     yAxis: {
       show: false,
-      type: 'category'
+      type: 'category',
     },
     series: [
       {
@@ -55,8 +53,8 @@ onMounted(() => {
         z: 100,
         itemStyle: {
           color: 'skyblue',
-          borderRadius: 20
-        }
+          borderRadius: 20,
+        },
       },
       {
         type: 'bar',
@@ -65,16 +63,16 @@ onMounted(() => {
         barGap: '-100%',
         itemStyle: {
           color: 'pink',
-          borderRadius: 20
-        }
-      }
+          borderRadius: 20,
+        },
+      },
     ],
     grid: {
       left: 0,
       top: 0,
       right: 0,
-      bottom: 0
-    }
+      bottom: 0,
+    },
   })
 })
 </script>
@@ -117,7 +115,6 @@ onMounted(() => {
       justify-content: center;
       align-items: center;
     }
-
   }
   .rate {
     display: flex;

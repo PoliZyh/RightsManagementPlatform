@@ -91,19 +91,19 @@
       <!-- 抽屉 -->
       <el-drawer v-model="isShowDrawer" :direction="'rtl'">
         <template #header>
-          <h4>添加用户</h4>
+          <h4>{{ userParams.id ? '更新用户' : '添加用户' }}</h4>
         </template>
         <template #default>
           <div>
-            <el-form>
-              <el-form-item label="用户名字" v-model="userParams.username">
-                <el-input placeholder="请输入用户的名字"></el-input>
+            <el-form :model="userParams" :rules="rules" ref="formRef">
+              <el-form-item label="用户名字" prop="username">
+                <el-input placeholder="请输入用户的名字" v-model="userParams.username"></el-input>
               </el-form-item>
-              <el-form-item label="用户名称" v-model="userParams.name">
-                <el-input placeholder="请输入用户的名称"></el-input>
+              <el-form-item label="用户名称" prop="name">
+                <el-input placeholder="请输入用户的名称" v-model="userParams.name"></el-input>
               </el-form-item>
-              <el-form-item label="用户密码" v-model="userParams.password">
-                <el-input placeholder="请输入用户的密码"></el-input>
+              <el-form-item label="用户密码" prop="password" v-if="!userParams.id">
+                <el-input placeholder="请输入用户的密码" v-model="userParams.password"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -122,7 +122,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { nextTick, onMounted, reactive, ref } from 'vue'
 import { reqGetUserList, reqAddOrUpdateUser } from '@/api/acl/user/index'
 import { ElMessage } from 'element-plus'
 import type { I_USER_OBJ } from '@/api/acl/user/type'
@@ -137,6 +137,41 @@ const userParams = reactive<I_USER_OBJ>({
   name: '',
   password: '',
 })
+const formRef = ref<any>()
+
+// 校验用户名字
+const validatorUsername = (_: any, value: any, cb: any) => {
+  // 用户昵称至少五位
+  if (value.trim().length < 5) {
+    cb(new Error('用户名至少五位'))
+  } else {
+    cb()
+  }
+}
+// 校验用户名字
+const validatorName = (_: any, value: any, cb: any) => {
+  // 用户昵称至少五位
+  if (value.trim().length < 5) {
+    cb(new Error('昵称至少五位'))
+  } else {
+    cb()
+  }
+}// 校验用户名字
+const validatorPassword = (_: any, value: any, cb: any) => {
+  // 用户昵称至少五位
+  if (value.trim().length < 6) {
+    cb(new Error('昵称至少六位'))
+  } else {
+    cb()
+  }
+}
+
+
+const rules = {
+  username: [{ required: true, trigger: 'blur', validator: validatorUsername }],
+  name: [{ required: true, trigger: 'blur', validator: validatorName }],
+  password: [{ required: true, trigger: 'blur', validator: validatorPassword }],
+}
 
 onMounted(() => {
   getUserList()
@@ -168,12 +203,16 @@ const handleSizeChange = () => {
 }
 
 // 添加用户
-const handleAddUser = () => {
+const handleAddUser = async () => {
   isShowDrawer.value = true
+  await nextTick()
+  formRef.value.clearValidate()
+  clearParams()
 }
 
 // 编辑用户
 const handleEditUser = (row: I_USER_OBJ) => {
+  Object.assign(userParams, row)
   isShowDrawer.value = true
 }
 
@@ -185,12 +224,15 @@ const handleCancelOnDrawer = () => {
 
 // 确认编辑/添加用户
 const handleConfirmOnDrawer = async () => {
+  await formRef.value.validate()
   const res = await reqAddOrUpdateUser(userParams)
   if (res.code === 200) {
     isShowDrawer.value = false
     ElMessage.success(userParams.id ? '更新成功' : '添加成功')
     getUserList(userParams.id ? pageNo.value : 1)
     clearParams()
+    // 浏览器自动刷新一次 防止用户变化账号不重新登录
+    window.location.reload()
   } else {
     ElMessage.error(userParams.id ? '更新成功' : '添加成功')
   }

@@ -30,7 +30,6 @@ import Sex from './components/Sex.vue'
 import Map from './components/Map.vue'
 import Line from './components/Line.vue'
 
-
 const screenRef = ref<HTMLDivElement>()
 
 onMounted(() => {
@@ -38,8 +37,6 @@ onMounted(() => {
     'transform',
     `scale(${getScale()}) translate(-50%, -50%)`,
   )
-
-  
 })
 
 // 大屏锁放的比例
@@ -51,11 +48,11 @@ const getScale = (w: number = 1920, h: number = 1080) => {
 
 // 监听适口变化
 window.onresize = () => {
-    screenRef.value?.style.setProperty(
-      'transform',
-      `scale(${getScale()}) translate(-50%, -50%)`,
-    )
-  }
+  screenRef.value?.style.setProperty(
+    'transform',
+    `scale(${getScale()}) translate(-50%, -50%)`,
+  )
+}
 </script>
 
 <style scoped lang="scss">
